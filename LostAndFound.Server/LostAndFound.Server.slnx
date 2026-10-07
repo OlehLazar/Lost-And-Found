@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LostAndFound.Api/LostAndFound.Api.csproj" Id="687e4db3-740b-4b18-adc9-db12b96aa756" />
+  <Project Path="LostAndFound.Application/LostAndFound.Application.csproj" Id="6024bec1-f076-441a-b342-d6be44749e81" />
+  <Project Path="LostAndFound.Domain/LostAndFound.Domain.csproj" Id="4afa0cd7-ff7b-4973-98f6-6edaead36530" />
+  <Project Path="LostAndFound.Infrastructure/LostAndFound.Infrastructure.csproj" Id="dda33565-dc6d-4d1f-b6b7-12bd9778818e" />
+</Solution>
