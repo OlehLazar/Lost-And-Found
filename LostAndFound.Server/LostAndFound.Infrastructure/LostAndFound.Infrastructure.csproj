@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LostAndFound.Application\LostAndFound.Application.csproj" />
     <ProjectReference Include="..\LostAndFound.Domain\LostAndFound.Domain.csproj" />
   </ItemGroup>
 
