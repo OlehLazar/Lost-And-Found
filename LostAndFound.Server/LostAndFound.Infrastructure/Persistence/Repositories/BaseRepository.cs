@@ -1,4 +1,5 @@
-﻿using LostAndFound.Application.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using LostAndFound.Application.Interfaces.Repositories;
 using LostAndFound.Domain.Entities;
 
 namespace LostAndFound.Infrastructure.Persistence.Repositories;
@@ -9,28 +10,32 @@ internal class BaseRepository<TEntity>(LostAndFoundDbContext context)
 {
 	protected readonly LostAndFoundDbContext _context = context;
 
-	public Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
+	public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
 	{
-		throw new NotImplementedException();
+		return await _context.Set<TEntity>()
+			.AsNoTracking()
+			.ToListAsync(cancellationToken);
 	}
 
-	public void Delete(TEntity entity)
+	public async Task<TEntity?> GetAsync(Guid id, CancellationToken cancellationToken = default)
 	{
-		throw new NotImplementedException();
+		return await _context.Set<TEntity>()
+			.AsNoTracking()
+			.FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 	}
 
-	public Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken = default)
+	public async Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
 	{
-		throw new NotImplementedException();
-	}
-
-	public Task<TEntity?> GetAsync(Guid id, CancellationToken cancellationToken = default)
-	{
-		throw new NotImplementedException();
+		await _context.Set<TEntity>().AddAsync(entity, cancellationToken);
 	}
 
 	public void Update(TEntity entity)
 	{
-		throw new NotImplementedException();
+		_context.Set<TEntity>().Update(entity);
+	}
+
+	public void Delete(TEntity entity)
+	{
+		_context.Set<TEntity>().Remove(entity);
 	}
 }
